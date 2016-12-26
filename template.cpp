@@ -6,6 +6,8 @@
 #define max3(a,b,c) max(a, max(b,c))
 #define min3(a,b,c) min(a, min(b,c))
 #define ones(a) __builtin_popcount(a)
+#define loop(a,b) for(ll i=a; i<b; i++)
+#define loopr(a,b) for(ll i=b-1; i>=a; i--)
 #define max4(a,b,c,d) max(max(a,b), max(c,d))
 #define min4(a,b,c,d) min(min(a,b), min(c,d))
 
