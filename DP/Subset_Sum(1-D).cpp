@@ -1,20 +1,37 @@
 #include <bits/stdc++.h>
 
-#define ll long long int
-
-#define SZ 12345
-#define MOD 10000007
-
+#define SZ 1234567
+#define MOD7 10000007
+#define MOD9 1000000009
+#define pb push_back
+#define pob pop_back
+#define mp make_pair
+#define ALL(x) x.begin(), x.end()
+#define UNIQUE(x) x.resize(unique(ALL(x)) - x.begin());
+#define max3(a, b, c) max(a, max(b, c))
+#define min3(a, b, c) min(a,, min(b, c))
+#define max4(a, b, c, d) max(max(a, b), max(c, d))
+#define min4(a, b, c, d) min(min(a, b), min(c, d))
+#define loop(i, a, b) for(ll i=a; i<b; i++)
+#define loopr(i, a, b) for(ll i=a; i>=b; i--)
 using namespace std;
+
+typedef long long int ll;
+typedef long double ld;
+typedef vector<ll> vll;
+typedef pair<ll, ll> pll;
+typedef vector<pll> vpll;
 
 int main(){
 	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
 	
 	ll n, q, sum = 0;
 	cin>>n;
 	
 	ll a[SZ];
-	for(ll i=0; i<n; i++){
+	loop(i, 0, n){
 		cin>>a[i];
 		sum += a[i];
 	}
@@ -23,19 +40,18 @@ int main(){
 	memset(dp, 0, sizeof(dp));
 	
 	dp[0] = 1;
-	for(ll i = 0; i < n; i++){
-		for(ll j = sum; j >= a[i]; j--){
+	loop(i, 0, n){
+		loopr(j, sum, a[i]){
 			dp[j] |= dp[j - a[i]];
 		}
 	}
 	
 //	for infinite usage of a[i]
-//	for(ll j = a[i]); j <= required_sum; j++)
+//	loop(j, a[i], required_sum+1)
 	
 	cin>>q;
-	for(ll i=0; i<q; i++){
+	loop(i, 0, q){
 		ll tmp;
-		bool flag = false;
 		cin>>tmp;
 		cout<<dp[tmp]<<endl;
 	}
