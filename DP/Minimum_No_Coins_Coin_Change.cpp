@@ -27,34 +27,48 @@ int main(){
 	cin.tie(0);
 	cout.tie(0);
 	
-	ll n, q, sum = 0;
-	cin>>n;
+	ll n, total;
+	cin>>n>>total;
 	
-	ll a[SZ];
+	ll coins[n];
 	loop(i, 0, n){
-		cin>>a[i];
-		sum += a[i];
+		cin>>coins[i];
 	}
-	
-	ll dp[sum+1];
-	memset(dp, 0, sizeof(dp));
-	
-	dp[0] = 1;
+
+	ll dp[total+1], coinIdx[total+1];
+	loop(i, 0, total+1){
+		dp[i] = INT_MAX;
+		coinIdx[i] = -1;
+	}
+
+	dp[0] = 0;
 	loop(i, 0, n){
-		loopr(j, sum, a[i]){
-			dp[j] |= dp[j - a[i]];
+		loop(j, 1, total+1){
+			if(j >= coins[i]){
+				if(1 + dp[j-coins[i]] < dp[j]){
+					dp[j] = 1 + dp[j-coins[i]];
+					coinIdx[j] = i;
+				}
+			}
 		}
 	}
-	
-//	for infinite usage of a[i]
-//	loop(j, a[i], required_sum+1)
-	
-	cin>>q;
-	loop(i, 0, q){
-		ll tmp;
-		cin>>tmp;
-		cout<<dp[tmp]<<endl;
+	cout<<dp[total]<<endl;
+
+	// Print solution
+	if(coinIdx[total] == -1){
+		cout<<"No Solution Possible"<<endl;
 	}
-	
+
+	ll start = total;
+	cout<<"Coins used to form total: ";
+	while(start != 0){
+		ll j = coinIdx[start];
+		cout<<coins[j]<<" ";
+		start = start - coins[j];
+	}
+	cout<<endl;
+
 	return 0;
 }
+// Problem Statement : Given some coins of different denominations and a total, how many minimum
+// number of coins we would need to get that total, assuming infinite supply of coins.

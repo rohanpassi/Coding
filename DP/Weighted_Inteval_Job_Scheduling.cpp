@@ -9,7 +9,7 @@
 #define ALL(x) x.begin(), x.end()
 #define UNIQUE(x) x.resize(unique(ALL(x)) - x.begin());
 #define max3(a, b, c) max(a, max(b, c))
-#define min3(a, b, c) min(a,, min(b, c))
+#define min3(a, b, c) min(a, min(b, c))
 #define max4(a, b, c, d) max(max(a, b), max(c, d))
 #define min4(a, b, c, d) min(min(a, b), min(c, d))
 #define loop(i, a, b) for(ll i=a; i<b; i++)

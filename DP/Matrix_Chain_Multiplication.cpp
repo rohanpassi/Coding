@@ -26,7 +26,38 @@ int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
-	
+
+	ll n;
+	cin>>n;
+
+	ll dims[n];
+	loop(i, 0, n){
+		cin>>dims[i];
+	}
+
+	ll mat[n][n];
+	loop(i, 1, n){
+		mat[i][i] = 0;
+	}
+
+	loop(len, 2, n){
+		loop(i, 1, n-len+1){
+			ll j = i + len - 1;
+			mat[i][j] = INT_MAX;
+			loop(k, i, j){
+				ll q = mat[i][k] + mat[k+1][j] + dims[i-1] * dims[k] * dims[j];
+				if(q < mat[i][j]){
+					mat[i][j] = q;
+				}
+			}
+		}
+	}
+
+	cout<<mat[1][n-1]<<endl;
 	
 	return 0;
 }
+// Problem Statement : Given chain of matrices, find the minimum number of multiplications needed.
+// Solution Approach : We can place the first set of parenthesis in n-1 ways, which reduces the
+// problem into smaller subproblems.
+// Application : Minimum and maximum values of an expression with * and +
