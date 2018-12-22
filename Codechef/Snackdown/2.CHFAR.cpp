@@ -1,16 +1,19 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
-#define SZ 123456
+#define SZ 1234567
 #define MOD7 10000007
 #define MOD9 1000000009
 #define pb push_back
 #define pob pop_back
 #define mp make_pair
+#define ALL(x) x.begin(), x.end()
+#define UNIQUE(x) x.resize(unique(ALL(x)) - x.begin());
 #define max3(a, b, c) max(a, max(b, c))
-#define min3(a, b, c) min(a,, min(b, c))
+#define min3(a, b, c) min(a, min(b, c))
 #define max4(a, b, c, d) max(max(a, b), max(c, d))
 #define min4(a, b, c, d) min(min(a, b), min(c, d))
 #define loop(i, a, b) for(ll i=a; i<b; i++)
+#define loopr(i, a, b) for(ll i=a; i>=b; i--)
 using namespace std;
 
 typedef long long int ll;
@@ -21,24 +24,33 @@ typedef vector<pll> vpll;
 
 int main(){
 	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	
-	ll n;
-	cin>>n;
-	char str[SZ];
-	for(ll i=0; i<n; i++){
-		cin>>str[i];
-	}
-	sort(str, str+n);
-	if(str[0] == '0'){
-		while(str[0] == '0'){
-			rotate(str, str+1, str+n);
+	int t;
+	cin>>t;
+	
+	while(t--){
+		int n, k;
+		cin>>n>>k;
+		
+		int cnt=0;
+		for(int i=0; i<n; i++){
+			int tmp;
+			cin>>tmp;
+			
+			if(tmp == 1){
+				cnt++;
+			}
+		}
+		
+		if(n - cnt <= k){
+			cout<<"YES"<<endl;
+		}
+		else{
+			cout<<"NO"<<endl;
 		}
 	}
-	else{
-		reverse(str, str+n);
-	}
-	cout<<str<<endl;
+	
 	return 0;
 }
